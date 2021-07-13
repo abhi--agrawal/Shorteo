@@ -18,4 +18,20 @@ public class TestRedis implements Serializable {
 
     @NotNull
     private String shorteo_url;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getShorteo_url() {
+        return shorteo_url;
+    }
+
+    public void setShorteo_url(String shorteo_url) {
+        this.shorteo_url = shorteo_url;
+    }
 }
