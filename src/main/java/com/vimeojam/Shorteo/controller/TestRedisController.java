@@ -49,7 +49,7 @@ public class TestRedisController {
     }
 
     @GetMapping("/keys")
-    private ResponseEntity validateKey(@RequestParam String key) {
+    private ResponseEntity validateKey(@RequestParam("key") String key) {
         if (testRedisService.validateKey(key))
             return ResponseEntity.ok().build();
         else
