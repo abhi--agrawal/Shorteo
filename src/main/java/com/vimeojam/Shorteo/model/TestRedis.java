@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 public class TestRedis implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO , generator="CUST_SEQ")
-    private int id;
+    private Integer id;
 
     @NotNull
     private String shorteo_url;

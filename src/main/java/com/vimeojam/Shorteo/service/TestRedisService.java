@@ -35,6 +35,7 @@ public class TestRedisService {
     //saving a specific record by using the method save() of CrudRepository
     public void saveOrUpdate(TestRedis tests)
     {
+        setOps.add(RedisConfig.KEY_SET, tests.getShorteo_url());
         testRedisRepository.save(tests);
     }
     //deleting a specific record by using the method deleteById() of CrudRepository
