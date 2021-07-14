@@ -58,6 +58,7 @@ public class TestService
         newTest.setOriginal_url(test.getOriginal_url());
         newTest.setCreated_at(new Date());
         if(test.getCustom_url() != null){
+            newTest.setId(test.getCustom_url());
             newTest.setCustom_url(test.getCustom_url());
             shorteo_url = test.getCustom_url();
         }
@@ -72,8 +73,13 @@ public class TestService
     }
 
     public String getOriginalUrl(String shorteo_url) {
-        var id = conversion.decode(shorteo_url);
-        var entity = testRepository.findById(id.toString())
+//        if(shorteo_url.contains("batman")){
+//            var entity = testRepository.findById(shorteo_url)
+//                    .orElseThrow(() -> new EntityNotFoundException("There is no entity with " + shorteo_url));
+//            return entity.getOriginal_url();
+//        }
+        //var id = conversion.decode(shorteo_url);
+        var entity = testRepository.findById(shorteo_url)
                 .orElseThrow(() -> new EntityNotFoundException("There is no entity with " + shorteo_url));
         return entity.getOriginal_url();
     }
