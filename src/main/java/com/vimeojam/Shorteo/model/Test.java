@@ -18,4 +18,6 @@ public class Test {
 
     @NotNull
     private Date created_at;
+
+    private String custom_url;
 }

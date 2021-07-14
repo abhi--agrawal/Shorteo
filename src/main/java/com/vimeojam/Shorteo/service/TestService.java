@@ -53,14 +53,21 @@ public class TestService
     public String create_shorteo_url(Test test){
         Test newTest = new Test();
         UUID uuid = UUID.randomUUID();
+        String shorteo_url = "";
 
         newTest.setId(uuid.toString());
         newTest.setOriginal_url(test.getOriginal_url());
         newTest.setCreated_at(new Date());
 
+        if(test.getCustom_url() != null){
+            newTest.setCustom_url(test.getCustom_url());
+            shorteo_url = test.getCustom_url();
+        }
         var entity = testRepository.save(newTest);
 
-        String shorteo_url = conversion.encode(UUID.fromString(entity.getId()));
+        if(shorteo_url.isEmpty()) {
+            shorteo_url = conversion.encode(UUID.fromString(entity.getId()));
+        }
         TestRedis testRedis = new TestRedis();
         testRedis.setShorteo_url(shorteo_url);
         testRedisService.saveOrUpdate(testRedis);
