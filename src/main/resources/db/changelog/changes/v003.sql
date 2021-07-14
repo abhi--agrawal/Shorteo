@@ -1,0 +1,5 @@
+ALTER TABLE test
+ADD COLUMN created_at TIMESTAMP;
+
+ALTER TABLE test
+DROP COLUMN shorteo_url;

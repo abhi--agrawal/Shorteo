@@ -14,8 +14,24 @@ import javax.validation.constraints.NotNull;
 public class TestRedis implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO , generator="CUST_SEQ")
-    private int id;
+    private Integer id;
 
     @NotNull
     private String shorteo_url;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getShorteo_url() {
+        return shorteo_url;
+    }
+
+    public void setShorteo_url(String shorteo_url) {
+        this.shorteo_url = shorteo_url;
+    }
 }

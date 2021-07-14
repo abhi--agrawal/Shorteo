@@ -3,16 +3,23 @@ package com.vimeojam.Shorteo.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.vimeojam.Shorteo.model.TestRedis;
 import com.vimeojam.Shorteo.repository.TestRedisRepository;
+import com.vimeojam.Shorteo.configuration.RedisConfig;
+import org.springframework.data.redis.core.SetOperations;
+
+import javax.annotation.Resource;
+
 @Service
 public class TestRedisService {
     @Autowired
     TestRedisRepository testRedisRepository;
+
+    @Resource(name="redisTemplate")
+    private SetOperations<String, String> setOps;
+
     //getting all books record by using the method findaAll() of CrudRepository
     public List<TestRedis> getAllTests()
     {
@@ -28,6 +35,7 @@ public class TestRedisService {
     //saving a specific record by using the method save() of CrudRepository
     public void saveOrUpdate(TestRedis tests)
     {
+        setOps.add(RedisConfig.KEY_SET, tests.getShorteo_url());
         testRedisRepository.save(tests);
     }
     //deleting a specific record by using the method deleteById() of CrudRepository
@@ -39,5 +47,9 @@ public class TestRedisService {
     public void update(TestRedis tests, int id)
     {
         testRedisRepository.save(tests);
+    }
+
+    public boolean validateKey(String key) {
+        return setOps.isMember(RedisConfig.KEY_SET, key);
     }
 }

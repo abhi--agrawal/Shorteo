@@ -14,6 +14,9 @@ import org.springframework.data.redis.serializer.GenericToStringSerializer;
 @EnableRedisRepositories(basePackages = "com.vimeojam.Shorteo.repository")
 @PropertySource("classpath:application.properties")
 public class RedisConfig {
+
+    public static final String KEY_SET = "key_set";
+
     @Bean
     JedisConnectionFactory jedisConnectionFactory() {
         return new JedisConnectionFactory();
